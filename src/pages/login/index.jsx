@@ -10,16 +10,18 @@ import logo from '../../theme/assets/img/logo.png';
 //import LoginForm from '../forms/login';
 //import CopyRight from '../../theme/copyright';
 //import Loading from '../../theme/loading';
-import { getLoginStatus, getUserLoginStatus } from './actions';
+import { setLoginPageStatus, getLoginStatus, getUserLoginStatus } from './actions';
 
 class Login extends Component {
 
     componentDidMount() {
         // eslint-disable-next-line func-names
         $(window).bind('load resize', function() {
-            correctHeight();
-            detectBody();
-        });
+            correctHeight()
+            detectBody()
+        })
+
+        this.props.setLoginPageStatus(true)
     }
 
   /*static getDerivedStateFromProps(nextProps) {
@@ -74,6 +76,10 @@ const mapStoreToProps = (state) => ({
     user: state.user,
     loading: state.main.layout && state.main.layout.footer
 });
-const mapDispatchToProps = (dispatch) => bindActionCreators({ getLoginStatus, getUserLoginStatus }, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  setLoginPageStatus,
+  getLoginStatus,
+  getUserLoginStatus
+}, dispatch);
 
 export default connect(mapStoreToProps, mapDispatchToProps)(Login);

@@ -1,5 +1,5 @@
-import privateRoute from "./privateRoute";
-import publicRoute from "./publicRoute";
+import privateRoute from "./privateRouteReducer";
+import publicRoute from "./publicRouteReducer";
 
 const INITIAL_STATE = {
     privateRoute: null,
