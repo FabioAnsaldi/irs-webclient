@@ -8,9 +8,9 @@ import PrivateRoute from './privateRoute'
 import Routes from './routes'
 import Login from '../pages/login'
 
-import { setLayoutStatus } from './actions/layout'
+import { setLayoutStatus } from './actions/layoutActions'
 
-class Main extends Component {
+class Layout extends Component {
 
     componentDidMount() {
         this.props.setLayoutStatus(true)
@@ -26,7 +26,7 @@ class Main extends Component {
     }
 }
 
-const mapStateToProps = state => ({ layout: state.main.layout })
+const mapStateToProps = state => ({ state })
 const mapDispatchToProps = dispatch => bindActionCreators({ setLayoutStatus }, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main)
+export default connect(mapStateToProps, mapDispatchToProps)(Layout)

@@ -1,13 +1,11 @@
 import layoutReducer from "./layoutReducer";
 
 const INITIAL_STATE = {
-    layout: {
-        privateRoute: null,
-        publicRoute: null,
-        isLoaded: false
-    },
+    layout: null,
     isLoaded: false,
-    user: {}
+    user: {
+        isLogged: false
+    }
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -15,6 +13,10 @@ export default (state = INITIAL_STATE, action) => {
         case /SET_MAIN/.test(action.type):
             return {
                 ...state, isLoaded: action.payload
+            }
+        case /SET_USER/.test(action.type):
+            return {
+                ...state, user: action.payload
             }
         case /LAYOUT/.test(action.type):
             return {

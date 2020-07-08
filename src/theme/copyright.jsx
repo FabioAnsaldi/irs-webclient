@@ -19,7 +19,7 @@ class Copyright extends Component {
     }
 }
 
-const mapStateToProps = state => ({ copyright: state.main.layout.privateRoute.routes.footer.copyright })
+const mapStateToProps = state => ({ state })
 const mapDispatchToProps = dispatch => bindActionCreators({ setCopyrightStatus }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Copyright)

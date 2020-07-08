@@ -11,7 +11,7 @@ import Dashboard from "../pages/dashboard";
 
 import { correctHeight, detectBody } from './helpers/helpers'
 import './assets/dependencies'
-import { setRoutesStatus } from './actions/routes'
+import { setRoutesStatus } from './actions/routesActions'
 
 class Routes extends Component {
 
@@ -43,7 +43,7 @@ class Routes extends Component {
   }
 }
 
-const mapStateToProps = state => ({ routes: state.main.layout.privateRoute.routes })
+const mapStateToProps = state => ({ state })
 const mapDispatchToProps = dispatch => bindActionCreators({ setRoutesStatus }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Routes)

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Route } from 'react-router-dom';
 
-import { setPublicRouteStatus } from './actions/publicRoute'
+import { setPublicRouteStatus } from './actions/publicRouteActions'
 
 class PublicRoute extends Component {
 
@@ -27,10 +27,7 @@ class PublicRoute extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    user: state.main && state.main.user,
-    publicRoute: state.main.layout.publicRoute
-})
+const mapStateToProps = state => ({ state })
 const mapDispatchToProps = dispatch => bindActionCreators({ setPublicRouteStatus }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(PublicRoute)

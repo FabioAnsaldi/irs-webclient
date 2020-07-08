@@ -8,9 +8,10 @@ import { correctHeight, detectBody } from '../../theme/helpers/helpers';
 import '../../theme/assets/dependencies';
 import logo from '../../theme/assets/img/logo.png';
 //import LoginForm from '../forms/login';
-//import CopyRight from '../../theme/copyright';
+import CopyRight from '../../theme/copyright';
 //import Loading from '../../theme/loading';
-import { setLoginPageStatus, getLoginStatus, getUserLoginStatus } from './actions';
+import { setLoginPageStatus } from './actions';
+import { setUserStatus } from '../../theme/actions/mainActions'
 
 class Login extends Component {
 
@@ -54,7 +55,7 @@ class Login extends Component {
           <Link className="btn btn-sm btn-white btn-block" to="/activate">Activate Account</Link>
           <Link className="btn btn-sm btn-white btn-block" to="/register">Register</Link>
           <br/>
-          {/*<CopyRight/>*/}
+          <CopyRight/>
         </div>
       </div>
     );
@@ -72,14 +73,7 @@ class Login extends Component {
   };
 }
 
-const mapStoreToProps = (state) => ({
-    user: state.user,
-    loading: state.main.layout && state.main.layout.footer
-});
-const mapDispatchToProps = (dispatch) => bindActionCreators({
-  setLoginPageStatus,
-  getLoginStatus,
-  getUserLoginStatus
-}, dispatch);
+const mapStateToProps = state => ({ state })
+const mapDispatchToProps = (dispatch) => bindActionCreators({ setLoginPageStatus, setUserStatus }, dispatch);
 
-export default connect(mapStoreToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

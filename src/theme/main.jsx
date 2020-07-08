@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 import Layout from './layout'
 
-import { setMainStatus } from './actions/main'
+import { setMainStatus } from './actions/mainActions'
 
 class Main extends Component {
 
@@ -22,7 +22,7 @@ class Main extends Component {
     }
 }
 
-const mapStateToProps = state => ({ main: state.main })
+const mapStateToProps = state => ({ state })
 const mapDispatchToProps = dispatch => bindActionCreators({ setMainStatus }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main)
