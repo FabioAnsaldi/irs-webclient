@@ -8,10 +8,10 @@ import { correctHeight, detectBody } from '../../theme/helpers/helpers';
 import '../../theme/assets/dependencies';
 import logo from '../../theme/assets/img/logo.png';
 //import LoginForm from '../forms/login';
-import CopyRight from '../../theme/copyright';
+import CopyRight from '../../theme/components/copyright';
 //import Loading from '../../theme/loading';
 import { setLoginPageStatus } from './actions';
-import { setUserStatus } from '../../theme/actions/mainActions'
+import { setUserStatus } from '../../theme/components/main/actions'
 
 class Login extends Component {
 

@@ -15,7 +15,7 @@ import multi from "redux-multi";
 import thunk from "redux-thunk";
 
 import combiner from "./combiner/combiner";
-import Main from "./theme/main";
+import Main from "./theme/components/main/index";
 
 const devTools =
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();

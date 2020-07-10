@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 
-import mainReducer from "../theme/reducers/mainReducer";
+import mainReducer from "../theme/components/main/reducer";
 
 const rootReducer = combineReducers({
   main: mainReducer
