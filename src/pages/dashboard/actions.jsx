@@ -1,6 +1,6 @@
 export function setDashboardPageStatus(value) {
     return {
-        type: 'MAIN::ROUTES::PRIVATE_ROUTE::LAYOUT::SET_LOGIN_PAGE',
+        type: 'MAIN::ROUTES::PRIVATE_ROUTE::LAYOUT::SET_DASHBOARD_PAGE',
         payload: value
     }
 }

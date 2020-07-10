@@ -23,6 +23,8 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, topHeader: topHeaderReducer(state && state.topHeader, action) }
         case /FOOTER/.test(action.type):
             return { ...state, footer: footerReducer(state && state.footer, action) }
+        case /DASHBOARD_PAGE/.test(action.type):
+            return { ...state, footer: footerReducer(state && state.footer, action) }
         default:
             return state
     }

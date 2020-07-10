@@ -9,7 +9,7 @@ const INITIAL_STATE = {
 }
 
 export default (state = INITIAL_STATE, action) => {
-    debugger
+    
     switch (true) {
         case /SET_MAIN/.test(action.type):
             return { ...state, isLoaded: action.payload }

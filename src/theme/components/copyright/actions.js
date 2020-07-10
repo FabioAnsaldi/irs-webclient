@@ -1,6 +1,6 @@
 export function setCopyrightStatus(value) {
     return {
-        type: 'MAIN::ROUTES::PUBLIC_ROUTE::LOGIN_PAGE::SET_COPYRIGHT',
+        type: 'MAIN::ROUTES::PRIVATE_ROUTE::LAYOUT::FOOTER::SET_COPYRIGHT',
         payload: value
     }
 }
