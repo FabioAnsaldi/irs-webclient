@@ -18,11 +18,14 @@ class TopHeader extends Component {
     }
 
     render() {
+        
         return (
             <div className="row border-bottom">
                 <nav className="navbar navbar-static-top" role="navigation" style={{ marginBottom: 0 }}>
                     <div className="navbar-header">
-                        <a className="navbar-minimalize minimalize-styl-2 btn btn-primary" onClick={(e) => this.toggleNavigation(e)} href="#"><i className="fa fa-bars"></i> </a>
+                        <a className="navbar-minimalize minimalize-styl-2 btn btn-primary" onClick={(e) => this.toggleNavigation(e)} href="#">
+                            <i className="fa fa-bars"></i>
+                        </a>
                         <form role="search" className="navbar-form-custom" method="post" action="#">
                             <div className="form-group">
                                 <input type="text" placeholder="Do your research..." className="form-control" name="top-search" id="top-search" />
@@ -42,7 +45,7 @@ class TopHeader extends Component {
     }
 }
 
-const mapStateToProps = state => ({ topHeader: state.main.layout && state.main.layout.topHeader })
+const mapStateToProps = state => ({ state })
 const mapDispatchToProps = dispatch => bindActionCreators({ setTopHeaderStatus }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(TopHeader)

@@ -1,4 +1,4 @@
-import routesReducer from "../routes/reducer";
+import layoutReducer from "../layout/reducer";
 
 const INITIAL_STATE = {
     layout: null,
@@ -10,7 +10,7 @@ export default (state = INITIAL_STATE, action) => {
         case /SET_PRIVATE_ROUTE/.test(action.type):
             return { ...state, isLoaded: action.payload }
         case /LAYOUT/.test(action.type):
-            return { ...state, layout: routesReducer(state && state.layout, action) }
+            return { ...state, layout: layoutReducer(state && state.layout, action) }
         default:
             return state
     }

@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux'
 import Progress from '../progress'
 import Navigation from '../navigation'
 import TopHeader from '../topHeader'
+import Header from '../header'
 import Footer from '../footer'
 import Dashboard from "../../../pages/dashboard";
 
@@ -31,6 +32,7 @@ class Layout extends Component {
             <Navigation />
             <div id="page-wrapper" className="gray-bg">
                 <TopHeader />
+                <Header title="Dashboard" />
                   <Switch>
                     <Route path="/" exact={true} component={Dashboard} />
                     <Route path="*" component={Dashboard} />

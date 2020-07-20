@@ -11,11 +11,6 @@ import logo from '../../assets/img/logo.png'
 
 class Navigation extends Component {
 
-    UNSAFE_componentWillUpdate(nextProps, nextState) {
-        $("body").toggleClass("mini-navbar")
-        smoothlyMenu()
-    }
-
     componentDidMount() {
         const { menu } = this.refs
         

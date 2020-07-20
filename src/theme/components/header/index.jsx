@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 
 export default class Header extends Component {
     
-    render(){
+    render() {
+        
         return (
             <div className="row wrapper border-bottom white-bg page-heading">
                 <div className="col-sm-4">

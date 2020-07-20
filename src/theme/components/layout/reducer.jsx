@@ -1,7 +1,8 @@
 import progressReducer from "../progress/reducer";
 import navigationReducer from "../navigation/reducer";
 import topHeaderReducer from "../topHeader/reducer";
-import footerReducer from "../footer/reducer";  
+import footerReducer from "../footer/reducer";
+import dashboardReducer from "../../../pages/dashboard/reducer";
 
 const INITIAL_STATE = {
     progress: null,
@@ -24,7 +25,7 @@ export default (state = INITIAL_STATE, action) => {
         case /FOOTER/.test(action.type):
             return { ...state, footer: footerReducer(state && state.footer, action) }
         case /DASHBOARD_PAGE/.test(action.type):
-            return { ...state, footer: footerReducer(state && state.footer, action) }
+            return { ...state, dashboard: dashboardReducer(state && state.dashboard, action) }
         default:
             return state
     }

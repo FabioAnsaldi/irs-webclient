@@ -7,7 +7,7 @@ export function setDashboardPageStatus(value) {
 
 export function setModalStatus(value) {
     return {
-        type: 'SET_MODAL',
+        type: 'MAIN::ROUTES::PRIVATE_ROUTE::LAYOUT::DASHBOARD_PAGE::SET_MODAL',
         payload: value
     }
 }

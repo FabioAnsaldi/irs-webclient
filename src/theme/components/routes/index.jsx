@@ -18,8 +18,6 @@ class Routes extends Component {
 
     render() {
 
-        const { router, params, location, routes } = this.props;
-        
         return (
             <Switch>
                 <PublicRoute path="/login" component={Login} />
