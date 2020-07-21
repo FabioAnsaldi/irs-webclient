@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Modal, DatePicker } from 'antd'
 
-//Redux
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
