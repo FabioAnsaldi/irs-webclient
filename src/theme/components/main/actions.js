@@ -1,13 +1,13 @@
-export function setMainStatus(value) {
+export function setComponentLoaded(COMPONENT, value) {
     return {
-        type: 'SET_MAIN',
+        type: `${COMPONENT}::SET_COMPONENT_LOADED`,
         payload: value
     }
 }
 
-export function setUserStatus(value) {
+export function setUserData(value) {
     return {
-        type: 'SET_USER',
+        type: `${COMPONENT}::SET_USER_DATA`,
         payload: value
     }
 }

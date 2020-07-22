@@ -1,6 +1,6 @@
-export function setLayoutStatus(value) {
+export function setComponentLoaded(COMPONENT, value) {
     return {
-        type: 'MAIN::ROUTES::PRIVATE_ROUTE::SET_LAYOUT',
+        type: `${COMPONENT}::SET_COMPONENT_LOADED`,
         payload: value
     }
 }

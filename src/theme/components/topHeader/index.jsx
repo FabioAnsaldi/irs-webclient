@@ -2,13 +2,16 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import { setTopHeaderStatus } from './actions'
 import { smoothlyMenu } from '../../helpers/helpers'
+import { getParentComponent } from '../../helpers/helpers'
+
+import { setComponentLoaded } from './actions'
 
 class TopHeader extends Component {
 
     componentDidMount() {
-        this.props.setTopHeaderStatus(true)
+        let parentComponent = getParentComponent.call(this._reactInternalFiber)
+        this.props.setComponentLoaded(parentComponent, true)
     }
 
     toggleNavigation(e) {
@@ -46,6 +49,6 @@ class TopHeader extends Component {
 }
 
 const mapStateToProps = state => ({ state })
-const mapDispatchToProps = dispatch => bindActionCreators({ setTopHeaderStatus }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ setComponentLoaded }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(TopHeader)

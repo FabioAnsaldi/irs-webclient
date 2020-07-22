@@ -1,6 +1,6 @@
-export function setLoginPageStatus(value) {
+export function setComponentLoaded(COMPONENT, value) {
     return {
-        type: 'MAIN::ROUTES::PUBLIC_ROUTE::SET_LOGIN_PAGE',
+        type: `${COMPONENT}::SET_COMPONENT_LOADED`,
         payload: value
     }
 }

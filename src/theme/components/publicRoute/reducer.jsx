@@ -7,9 +7,9 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
     switch (true) {
-        case /SET_PUBLIC_ROUTE/.test(action.type):
+        case /PUBLIC_ROUTE::SET_COMPONENT_LOADED/.test(action.type):
             return { ...state, isLoaded: action.payload }
-        case /LOGIN_PAGE/.test(action.type):
+        case /LOGIN::/.test(action.type):
             return { ...state, loginPage: loginReducer(state && state.loginPage, action) }
         default:
             return state

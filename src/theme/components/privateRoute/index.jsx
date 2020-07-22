@@ -3,12 +3,15 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Route, Redirect } from 'react-router-dom';
 
-import { setPrivateRouteStatus } from './actions'
+import { getParentComponent } from '../../helpers/helpers'
+
+import { setComponentLoaded } from './actions'
 
 class PrivateRoute extends Component {
 
     componentDidMount() {
-        this.props.setPrivateRouteStatus(true)
+        let parentComponent = getParentComponent.call(this._reactInternalFiber)
+        this.props.setComponentLoaded(parentComponent, true)
     }
 
     render() {
@@ -32,6 +35,6 @@ class PrivateRoute extends Component {
 }
 
 const mapStateToProps = state => ({ state })
-const mapDispatchToProps = dispatch => bindActionCreators({ setPrivateRouteStatus }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ setComponentLoaded }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(PrivateRoute)

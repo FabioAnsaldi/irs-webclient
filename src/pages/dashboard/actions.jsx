@@ -1,13 +1,13 @@
-export function setDashboardPageStatus(value) {
+export function setComponentLoaded(COMPONENT, value) {
     return {
-        type: 'MAIN::ROUTES::PRIVATE_ROUTE::LAYOUT::SET_DASHBOARD_PAGE',
+        type: `${COMPONENT}::SET_COMPONENT_LOADED`,
         payload: value
     }
 }
 
-export function setModalStatus(value) {
+export function setModalStatus(COMPONENT, value) {
     return {
-        type: 'MAIN::ROUTES::PRIVATE_ROUTE::LAYOUT::DASHBOARD_PAGE::SET_MODAL',
+        type: `${COMPONENT}::SET_MODAL_STATUS`,
         payload: value
     }
 }

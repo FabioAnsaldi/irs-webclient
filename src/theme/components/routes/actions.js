@@ -1,6 +1,6 @@
-export function setRoutesStatus(value) {
+export function setComponentLoaded(COMPONENT, value) {
     return {
-        type: 'MAIN::SET_ROUTES',
+        type: `${COMPONENT}::SET_COMPONENT_LOADED`,
         payload: value
     }
 }

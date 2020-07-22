@@ -4,7 +4,7 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
     switch (true) {
-        case /SET_NAVIGATION/.test(action.type):
+        case /NAVIGATION::SET_COMPONENT_LOADED/.test(action.type):
             return { ...state, isLoaded: action.payload }
         default:
             return state

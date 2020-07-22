@@ -5,10 +5,10 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import { correctHeight, detectBody } from '../../theme/helpers/helpers';
-
+import { getParentComponent } from '../../theme/helpers/helpers'
 import Content from '../../theme/content'
 
-import { setDashboardPageStatus, setModalStatus } from './actions'
+import { setComponentLoaded, setModalStatus } from './actions'
 
 class Dashboard extends Component {
 
@@ -19,12 +19,14 @@ class Dashboard extends Component {
             detectBody()
         })
 
-        this.props.setDashboardPageStatus(true)
+        let parentComponent = getParentComponent.call(this._reactInternalFiber)
+        this.props.setComponentLoaded(parentComponent, true)
     }
 
     openModal(e, state) {
         e.preventDefault()
-        this.props.setModalStatus(state)
+        let parentComponent = getParentComponent.call(this._reactInternalFiber)
+        this.props.setModalStatus(parentComponent, state)
     }
 
     render() {
@@ -64,6 +66,6 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = state => ({ state })
-const mapDispatchToProps = dispatch => bindActionCreators({ setDashboardPageStatus, setModalStatus }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ setComponentLoaded, setModalStatus }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)

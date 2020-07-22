@@ -3,12 +3,14 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Route, Redirect } from 'react-router-dom';
 
-import { setPublicRouteStatus } from './actions'
+import { setComponentLoaded } from './actions'
+import { getParentComponent } from '../../helpers/helpers'
 
 class PublicRoute extends Component {
 
     componentDidMount() {
-        this.props.setPublicRouteStatus(true)
+        let parentComponent = getParentComponent.call(this._reactInternalFiber)
+        this.props.setComponentLoaded(parentComponent, true)
     }
 
     render() {
@@ -32,6 +34,6 @@ class PublicRoute extends Component {
 }
 
 const mapStateToProps = state => ({ state })
-const mapDispatchToProps = dispatch => bindActionCreators({ setPublicRouteStatus }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ setComponentLoaded }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(PublicRoute)

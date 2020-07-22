@@ -2,14 +2,17 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { setProgressStatus } from './actions'
 import pace from '../../assets/js/pace/pace'
+import { getParentComponent } from '../../helpers/helpers'
+
+import { setComponentLoaded } from './actions'
 
 class Progress extends Component {
 
     componentDidMount() {
         pace.start();
-        this.props.setProgressStatus(true)
+        let parentComponent = getParentComponent.call(this._reactInternalFiber)
+        this.props.setComponentLoaded(parentComponent, true)
     }
 
     render() {
@@ -18,6 +21,6 @@ class Progress extends Component {
 }
 
 const mapStateToProps = state => ({ state })
-const mapDispatchToProps = dispatch => bindActionCreators({ setProgressStatus }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ setComponentLoaded }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Progress)

@@ -8,12 +8,14 @@ import PrivateRoute from '../privateRoute'
 import Layout from '../layout'
 import Login from '../../../pages/login'
 
-import { setRoutesStatus } from './actions'
+import { setComponentLoaded } from './actions'
+import { getParentComponent } from '../../helpers/helpers'
 
 class Routes extends Component {
 
     componentDidMount() {
-        this.props.setRoutesStatus(true)
+        let parentComponent = getParentComponent.call(this._reactInternalFiber)
+        this.props.setComponentLoaded(parentComponent, true)
     }
 
     render() {
@@ -28,6 +30,6 @@ class Routes extends Component {
 }
 
 const mapStateToProps = state => ({ state })
-const mapDispatchToProps = dispatch => bindActionCreators({ setRoutesStatus }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ setComponentLoaded }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Routes)

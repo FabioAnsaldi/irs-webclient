@@ -1,6 +1,6 @@
-export function setPrivateRouteStatus(value) {
+export function setComponentLoaded(COMPONENT, value) {
     return {
-        type: 'MAIN::ROUTES::SET_PRIVATE_ROUTE',
+        type: `${COMPONENT}::SET_COMPONENT_LOADED`,
         payload: value
     }
 }

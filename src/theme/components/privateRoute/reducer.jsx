@@ -7,9 +7,9 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
     switch (true) {
-        case /SET_PRIVATE_ROUTE/.test(action.type):
+        case /PRIVATEROUTE::SET_COMPONENT_LOADED/.test(action.type):
             return { ...state, isLoaded: action.payload }
-        case /LAYOUT/.test(action.type):
+        case /LAYOUT::/.test(action.type):
             return { ...state, layout: layoutReducer(state && state.layout, action) }
         default:
             return state

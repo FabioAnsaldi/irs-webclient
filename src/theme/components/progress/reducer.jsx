@@ -4,7 +4,7 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
     switch (true) {
-        case /SET_PROGRESS/.test(action.type):
+        case /PROGRESS::SET_COMPONENT_LOADED/.test(action.type):
             return { ...state, isLoaded: action.payload }
         default:
             return state

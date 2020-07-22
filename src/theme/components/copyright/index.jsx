@@ -2,12 +2,15 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { setCopyrightStatus } from './actions'
+import { getParentComponent } from '../../helpers/helpers'
+
+import { setComponentLoaded } from './actions'
 
 class Copyright extends Component {
 
     componentDidMount() {
-        this.props.setCopyrightStatus(true)
+        let parentComponent = getParentComponent.call(this._reactInternalFiber)
+        this.props.setComponentLoaded(parentComponent, true)
     }
 
     render() {
@@ -20,6 +23,6 @@ class Copyright extends Component {
 }
 
 const mapStateToProps = state => ({ state })
-const mapDispatchToProps = dispatch => bindActionCreators({ setCopyrightStatus }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ setComponentLoaded }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Copyright)

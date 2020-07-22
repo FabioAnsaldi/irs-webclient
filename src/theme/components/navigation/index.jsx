@@ -5,8 +5,9 @@ import { bindActionCreators } from 'redux'
 import MenuItem from '../../menuItem'
 import MenuTree from '../../menuTree'
 
-import { setNavigationStatus } from './actions'
-import { smoothlyMenu } from '../../helpers/helpers'
+import { getParentComponent } from '../../helpers/helpers'
+
+import { setComponentLoaded } from './actions'
 import logo from '../../assets/img/logo.png'
 
 class Navigation extends Component {
@@ -19,7 +20,9 @@ class Navigation extends Component {
                 toggle: true
             })
         })
-        this.props.setNavigationStatus(true)
+
+        let parentComponent = getParentComponent.call(this._reactInternalFiber)
+        this.props.setComponentLoaded(parentComponent, true)
     }
 
     render() {
@@ -58,6 +61,6 @@ class Navigation extends Component {
 }
 
 const mapStateToProps = state => ({ state })
-const mapDispatchToProps = dispatch => bindActionCreators({ setNavigationStatus }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ setComponentLoaded }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation)

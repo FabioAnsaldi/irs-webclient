@@ -4,17 +4,17 @@ const INITIAL_STATE = {
     routes: null,
     isLoaded: false,
     user: {
-        isLogged: false
+        isLogged: true
     }
 }
 
 export default (state = INITIAL_STATE, action) => {
     switch (true) {
-        case /SET_MAIN/.test(action.type):
+        case /MAIN::SET_COMPONENT_LOADED/.test(action.type):
             return { ...state, isLoaded: action.payload }
-        case /SET_USER/.test(action.type):
+        case /MAIN::SET_USER_DATA/.test(action.type):
             return { ...state, user: action.payload }
-        case /ROUTES/.test(action.type):
+        case /ROUTES::/.test(action.type):
             return { ...state, routes: routesReducer(state.routes, action) }
         default:
             return state

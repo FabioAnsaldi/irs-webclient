@@ -4,13 +4,15 @@ import { bindActionCreators } from 'redux'
 import { BrowserRouter } from 'react-router-dom'
 
 import Routes from '../../components/routes'
+import { getParentComponent } from '../../helpers/helpers'
 
-import { setMainStatus } from './actions'
+import { setComponentLoaded } from './actions'
 
 class Main extends Component {
 
     componentDidMount() {
-        this.props.setMainStatus(true)
+        let parentComponent = getParentComponent.call(this._reactInternalFiber)
+        this.props.setComponentLoaded(parentComponent, true)
     }
 
     render() {
@@ -24,6 +26,6 @@ class Main extends Component {
 }
 
 const mapStateToProps = state => ({ state })
-const mapDispatchToProps = dispatch => bindActionCreators({ setMainStatus }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ setComponentLoaded }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main)

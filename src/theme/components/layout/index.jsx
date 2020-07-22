@@ -11,8 +11,10 @@ import Footer from '../footer'
 import Dashboard from "../../../pages/dashboard";
 
 import { correctHeight, detectBody } from '../../helpers/helpers'
+import { getParentComponent } from '../../helpers/helpers'
 import '../../assets/dependencies'
-import { setLayoutStatus } from './actions'
+
+import { setComponentLoaded } from './actions'
 
 class Layout extends Component {
 
@@ -21,7 +23,9 @@ class Layout extends Component {
         correctHeight();
         detectBody();
     });
-    this.props.setLayoutStatus(true)
+    
+    let parentComponent = getParentComponent.call(this._reactInternalFiber)
+    this.props.setComponentLoaded(parentComponent, true)
   }
 
   render() {
@@ -45,6 +49,6 @@ class Layout extends Component {
 }
 
 const mapStateToProps = state => ({ state })
-const mapDispatchToProps = dispatch => bindActionCreators({ setLayoutStatus }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ setComponentLoaded }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Layout)

@@ -1,6 +1,6 @@
-export function setTopHeaderStatus(value) {
+export function setComponentLoaded(COMPONENT, value) {
     return {
-        type: 'MAIN::ROUTES::PRIVATE_ROUTE::LAYOUT::SET_TOP_HEADER',
+        type: `${COMPONENT}::SET_COMPONENT_LOADED`,
         payload: value
     }
 }

@@ -53,3 +53,21 @@ export function smoothlyMenu() {
         $('#side-menu').removeAttr('style');
     }
 }
+
+export function getParentComponent() {
+
+    let name = this.elementType.name && (this.elementType.name === this.type.name) ? this.type.name.toUpperCase() : ""
+    let parent = ""
+
+    if (this._debugOwner) {
+        parent = getParentComponent.call(this._debugOwner)
+    }
+
+    if (name !== "" && parent !== "") {
+        name = `${parent}::${name}`
+    } else {
+        name += parent
+    }
+    
+    return name
+}

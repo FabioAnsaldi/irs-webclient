@@ -10,8 +10,10 @@ import logo from '../../theme/assets/img/logo.png';
 //import LoginForm from '../forms/login';
 import CopyRight from '../../theme/components/copyright';
 //import Loading from '../../theme/loading';
-import { setLoginPageStatus } from './actions';
-import { setUserStatus } from '../../theme/components/main/actions'
+import { getParentComponent } from '../../theme/helpers/helpers'
+
+import { setComponentLoaded } from './actions';
+import { setUserData } from '../../theme/components/main/actions'
 
 class Login extends Component {
 
@@ -22,7 +24,8 @@ class Login extends Component {
             detectBody()
         })
 
-        this.props.setLoginPageStatus(true)
+        let parentComponent = getParentComponent.call(this._reactInternalFiber)
+        this.props.setComponentLoaded(parentComponent, true)
     }
 
   /*static getDerivedStateFromProps(nextProps) {
@@ -74,6 +77,6 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => ({ state })
-const mapDispatchToProps = (dispatch) => bindActionCreators({ setLoginPageStatus, setUserStatus }, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ setComponentLoaded, setUserData }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
