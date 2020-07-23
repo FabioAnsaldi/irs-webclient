@@ -11,6 +11,7 @@ const INITIAL_STATE = {
     topHeader: null,
     header: null,
     footer: null,
+    dashboard: null,
     isLoaded: false
 }
 

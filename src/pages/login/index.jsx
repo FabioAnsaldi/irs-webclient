@@ -16,7 +16,12 @@ import { setComponentLoaded } from './actions';
 import { setUserData } from '../../theme/components/main/actions'
 
 class Login extends Component {
-
+    
+    componentWillMount() {
+      let parentComponent = getParentComponent.call(this._reactInternalFiber)
+      this.props.setComponentLoaded(parentComponent, false)
+    }
+    
     componentDidMount() {
         // eslint-disable-next-line func-names
         $(window).bind('load resize', function() {

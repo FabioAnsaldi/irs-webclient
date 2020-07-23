@@ -8,7 +8,12 @@ import { getParentComponent } from '../../helpers/helpers'
 import { setComponentLoaded } from './actions'
 
 class TopHeader extends Component {
-
+    
+    componentWillMount() {
+      let parentComponent = getParentComponent.call(this._reactInternalFiber)
+      this.props.setComponentLoaded(parentComponent, false)
+    }
+    
     componentDidMount() {
         let parentComponent = getParentComponent.call(this._reactInternalFiber)
         this.props.setComponentLoaded(parentComponent, true)

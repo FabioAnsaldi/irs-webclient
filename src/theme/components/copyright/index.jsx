@@ -7,6 +7,11 @@ import { getParentComponent } from '../../helpers/helpers'
 import { setComponentLoaded } from './actions'
 
 class Copyright extends Component {
+    
+    componentWillMount() {
+      let parentComponent = getParentComponent.call(this._reactInternalFiber)
+      this.props.setComponentLoaded(parentComponent, false)
+    }
 
     componentDidMount() {
         let parentComponent = getParentComponent.call(this._reactInternalFiber)
@@ -14,6 +19,7 @@ class Copyright extends Component {
     }
 
     render() {
+        
         return (
             <div>
                 <strong>Copyright</strong> Best Vision Solutions &amp; Services &copy; 2020

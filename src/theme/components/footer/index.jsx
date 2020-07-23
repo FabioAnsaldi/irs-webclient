@@ -8,6 +8,11 @@ import { getParentComponent } from '../../helpers/helpers'
 import { setComponentLoaded } from './actions'
 
 class Footer extends Component {
+    
+    componentWillMount() {
+      let parentComponent = getParentComponent.call(this._reactInternalFiber)
+      this.props.setComponentLoaded(parentComponent, false)
+    }
 
     componentDidMount() {
         let parentComponent = getParentComponent.call(this._reactInternalFiber)
@@ -15,6 +20,7 @@ class Footer extends Component {
     }
 
     render() {
+        
         return (
             <div className="footer">
                 <div className="pull-right">

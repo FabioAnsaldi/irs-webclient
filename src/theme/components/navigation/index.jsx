@@ -11,6 +11,11 @@ import { setComponentLoaded } from './actions'
 import logo from '../../assets/img/logo.png'
 
 class Navigation extends Component {
+    
+    componentWillMount() {
+      let parentComponent = getParentComponent.call(this._reactInternalFiber)
+      this.props.setComponentLoaded(parentComponent, false)
+    }
 
     componentDidMount() {
         const { menu } = this.refs
@@ -26,6 +31,7 @@ class Navigation extends Component {
     }
 
     render() {
+        
         return (
             <nav className="navbar-default navbar-static-side" role="navigation">
                 <div className="sidebar-collapse">

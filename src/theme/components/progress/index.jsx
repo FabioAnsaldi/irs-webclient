@@ -16,6 +16,7 @@ class Progress extends Component {
     }
 
     render() {
+        
         return (null)
     }
 }

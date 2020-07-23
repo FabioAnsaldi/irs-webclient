@@ -12,6 +12,11 @@ import { setComponentLoaded, setModalStatus } from './actions'
 
 class Dashboard extends Component {
 
+    componentWillMount() {
+        let parentComponent = getParentComponent.call(this._reactInternalFiber)
+        this.props.setComponentLoaded(parentComponent, false)
+    }
+
     componentDidMount() {
         // eslint-disable-next-line func-names
         $(window).bind('load resize', function() {
@@ -33,7 +38,8 @@ class Dashboard extends Component {
 
         const { state } = this.props;
 
-        let isModalOpen = state.main.routes && state.main.routes.privateRoute.layout.dashboard.isModalOpen
+        let isModalOpen = state.main.routes.privateRoute.layout.dashboard &&
+            state.main.routes.privateRoute.layout.dashboard.isModalOpen
 
         return (
             <div>

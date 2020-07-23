@@ -18,34 +18,39 @@ import { setComponentLoaded } from './actions'
 
 class Layout extends Component {
 
-  componentDidMount() {
-    $(window).bind("load resize", function () {
-        correctHeight();
-        detectBody();
-    });
-    
-    let parentComponent = getParentComponent.call(this._reactInternalFiber)
-    this.props.setComponentLoaded(parentComponent, true)
-  }
+    componentWillMount() {
+      let parentComponent = getParentComponent.call(this._reactInternalFiber)
+      this.props.setComponentLoaded(parentComponent, false)
+    }
 
-  render() {
+    componentDidMount() {
+      $(window).bind("load resize", function () {
+          correctHeight();
+          detectBody();
+      });
+      
+      let parentComponent = getParentComponent.call(this._reactInternalFiber)
+      this.props.setComponentLoaded(parentComponent, true)
+    }
 
-    return (
-        <Fragment>
-            <Progress />
-            <Navigation />
-            <div id="page-wrapper" className="gray-bg">
-                <TopHeader />
-                <Header title="Dashboard" />
-                  <Switch>
-                    <Route path="/" exact={true} component={Dashboard} />
-                    <Route path="*" component={Dashboard} />
-                  </Switch>
-                <Footer />
-            </div>
-        </Fragment>
-    );
-  }
+    render() {
+
+        return (
+            <Fragment>
+                <Progress />
+                <Navigation />
+                <div id="page-wrapper" className="gray-bg">
+                    <TopHeader />
+                    <Header title="Dashboard" />
+                      <Switch>
+                        <Route path="/" exact={true} component={Dashboard} />
+                        <Route path="*" component={Dashboard} />
+                      </Switch>
+                    <Footer />
+                </div>
+            </Fragment>
+        );
+    }
 }
 
 const mapStateToProps = state => ({ state })
