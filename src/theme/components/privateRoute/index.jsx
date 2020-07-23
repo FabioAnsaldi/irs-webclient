@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Route, Redirect } from 'react-router-dom';
 
-import { getParentComponent } from '../../helpers/helpers'
+import { getParentComponent, getStateFrom } from '../../helpers/helpers'
 
 import { setComponentLoaded } from './actions'
 
@@ -20,13 +20,14 @@ class PrivateRoute extends Component {
     }
 
     render() {
-        const { component: Component, state, ...rest } = this.props;
+
+        const { component: Component, state, user, ...rest } = this.props
 
         return (
             <Route
                 {...rest}
                 render={(props) =>
-                    state.main.user.isLogged ? (
+                    user && user.isLogged ? (
                         <Suspense fallback={()=>{return (null)}}>
                             <Component {...props} />
                         </Suspense>
@@ -39,7 +40,7 @@ class PrivateRoute extends Component {
     }
 }
 
-const mapStateToProps = state => ({ state })
+const mapStateToProps = state => ({ state: getStateFrom(state, 'privateRoute'), user: getStateFrom(state, 'user') })
 const mapDispatchToProps = dispatch => bindActionCreators({ setComponentLoaded }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(PrivateRoute)

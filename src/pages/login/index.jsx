@@ -10,7 +10,7 @@ import logo from '../../theme/assets/img/logo.png';
 //import LoginForm from '../forms/login';
 import CopyRight from '../../theme/components/copyright';
 //import Loading from '../../theme/loading';
-import { getParentComponent } from '../../theme/helpers/helpers'
+import { getParentComponent, getStateFrom } from '../../theme/helpers/helpers'
 
 import { setComponentLoaded } from './actions';
 import { setUserData } from '../../theme/components/main/actions'
@@ -42,7 +42,8 @@ class Login extends Component {
   render() {
     //if (this.props.loading) {return <Loading/>;}
     //if (this.props.error) {toastr.error('Get Hired!', this.props.error);}
-
+    const { state } = this.props;
+    
     return (
       <div className="gray-bg">
         <div className="middle-box text-center loginscreen animated fadeInDown" style={{ paddingBottom: '40px' }}>
@@ -81,7 +82,7 @@ class Login extends Component {
   };
 }
 
-const mapStateToProps = state => ({ state })
+const mapStateToProps = state => ({ state: getStateFrom(state, 'login') })
 const mapDispatchToProps = (dispatch) => bindActionCreators({ setComponentLoaded, setUserData }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

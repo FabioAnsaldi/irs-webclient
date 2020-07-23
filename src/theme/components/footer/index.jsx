@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import Copyright from '../copyright'
-import { getParentComponent } from '../../helpers/helpers'
+import { getParentComponent, getStateFrom } from '../../helpers/helpers'
 
 import { setComponentLoaded } from './actions'
 
@@ -21,6 +21,8 @@ class Footer extends Component {
 
     render() {
         
+        const { state } = this.props
+
         return (
             <div className="footer">
                 <div className="pull-right">
@@ -34,7 +36,7 @@ class Footer extends Component {
     }
 }
 
-const mapStateToProps = state => ({ state })
+const mapStateToProps = state => ({ state: getStateFrom(state, 'footer') })
 const mapDispatchToProps = dispatch => bindActionCreators({ setComponentLoaded }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Footer)

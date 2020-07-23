@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 import MenuItem from '../../menuItem'
 import MenuTree from '../../menuTree'
 
-import { getParentComponent } from '../../helpers/helpers'
+import { getParentComponent, getStateFrom } from '../../helpers/helpers'
 
 import { setComponentLoaded } from './actions'
 import logo from '../../assets/img/logo.png'
@@ -31,6 +31,8 @@ class Navigation extends Component {
     }
 
     render() {
+
+        const { state } = this.props
         
         return (
             <nav className="navbar-default navbar-static-side" role="navigation">
@@ -66,7 +68,7 @@ class Navigation extends Component {
     }
 }
 
-const mapStateToProps = state => ({ state })
+const mapStateToProps = state => ({ state: getStateFrom(state, 'navigation') })
 const mapDispatchToProps = dispatch => bindActionCreators({ setComponentLoaded }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation)

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { getParentComponent } from '../../helpers/helpers'
+import { getParentComponent, getStateFrom } from '../../helpers/helpers'
 
 import { setComponentLoaded } from './actions'
 
@@ -20,6 +20,8 @@ class Copyright extends Component {
 
     render() {
         
+        const { state } = this.props
+
         return (
             <div>
                 <strong>Copyright</strong> Best Vision Solutions &amp; Services &copy; 2020
@@ -28,7 +30,7 @@ class Copyright extends Component {
     }
 }
 
-const mapStateToProps = state => ({ state })
+const mapStateToProps = state => ({ state: getStateFrom(state, 'copyright') })
 const mapDispatchToProps = dispatch => bindActionCreators({ setComponentLoaded }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Copyright)

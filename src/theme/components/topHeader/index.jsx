@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import { smoothlyMenu } from '../../helpers/helpers'
-import { getParentComponent } from '../../helpers/helpers'
+import { getParentComponent, getStateFrom } from '../../helpers/helpers'
 
 import { setComponentLoaded } from './actions'
 
@@ -26,6 +26,8 @@ class TopHeader extends Component {
     }
 
     render() {
+        
+        const { state } = this.props
         
         return (
             <div className="row border-bottom">
@@ -53,7 +55,7 @@ class TopHeader extends Component {
     }
 }
 
-const mapStateToProps = state => ({ state })
+const mapStateToProps = state => ({ state: getStateFrom(state, 'topHeader') })
 const mapDispatchToProps = dispatch => bindActionCreators({ setComponentLoaded }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(TopHeader)

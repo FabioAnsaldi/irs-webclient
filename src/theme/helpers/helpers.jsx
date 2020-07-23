@@ -71,3 +71,26 @@ export function getParentComponent() {
     
     return name
 }
+
+export function getStateFrom(globalState, componentName) {
+
+    if (!componentName || typeof globalState !== 'object' || globalState === null) {
+        return null
+    }
+
+    let state = globalState[componentName]
+
+    if (state) {
+        return state
+    }
+
+    Object.keys(globalState).forEach((key, i) => {
+        let appo = getStateFrom(globalState[key], componentName)
+        
+        if (appo) {
+            state = appo
+        }
+    })
+    
+    return state
+}

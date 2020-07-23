@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import { correctHeight, detectBody } from '../../theme/helpers/helpers';
-import { getParentComponent } from '../../theme/helpers/helpers'
+import { getParentComponent, getStateFrom } from '../../theme/helpers/helpers'
 import Content from '../../theme/content'
 
 import { setComponentLoaded, setModalStatus } from './actions'
@@ -38,8 +38,7 @@ class Dashboard extends Component {
 
         const { state } = this.props;
 
-        let isModalOpen = state.main.routes.privateRoute.layout.dashboard &&
-            state.main.routes.privateRoute.layout.dashboard.isModalOpen
+        let isModalOpen = state && state.isModalOpen
 
         return (
             <div>
@@ -71,7 +70,7 @@ class Dashboard extends Component {
     }
 }
 
-const mapStateToProps = state => ({ state })
+const mapStateToProps = state => ({ state: getStateFrom(state, 'dashboard') })
 const mapDispatchToProps = dispatch => bindActionCreators({ setComponentLoaded, setModalStatus }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)

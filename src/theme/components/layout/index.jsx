@@ -11,7 +11,7 @@ import Footer from '../footer'
 import Dashboard from "../../../pages/dashboard";
 
 import { correctHeight, detectBody } from '../../helpers/helpers'
-import { getParentComponent } from '../../helpers/helpers'
+import { getParentComponent, getStateFrom } from '../../helpers/helpers'
 import '../../assets/dependencies'
 
 import { setComponentLoaded } from './actions'
@@ -35,6 +35,8 @@ class Layout extends Component {
 
     render() {
 
+        const { state } = this.props
+
         return (
             <Fragment>
                 <Progress />
@@ -53,7 +55,7 @@ class Layout extends Component {
     }
 }
 
-const mapStateToProps = state => ({ state })
+const mapStateToProps = state => ({ state: getStateFrom(state, 'layout') })
 const mapDispatchToProps = dispatch => bindActionCreators({ setComponentLoaded }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Layout)

@@ -9,7 +9,7 @@ import Layout from '../layout'
 import Login from '../../../pages/login'
 
 import { setComponentLoaded } from './actions'
-import { getParentComponent } from '../../helpers/helpers'
+import { getParentComponent, getStateFrom } from '../../helpers/helpers'
 
 class Routes extends Component {
 
@@ -25,6 +25,8 @@ class Routes extends Component {
 
     render() {
 
+        const { state } = this.props
+
         return (
             <Switch>
                 <PublicRoute path="/login" component={Login} />
@@ -34,7 +36,7 @@ class Routes extends Component {
     }
 }
 
-const mapStateToProps = state => ({ state })
+const mapStateToProps = state => ({ state: getStateFrom(state, 'routes') })
 const mapDispatchToProps = dispatch => bindActionCreators({ setComponentLoaded }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Routes)
