@@ -13,20 +13,20 @@ import logo from '../../assets/img/logo.png'
 class Navigation extends Component {
     
     componentWillMount() {
-      let parentComponent = getParentComponent.call(this._reactInternalFiber)
+      let parentComponent = getParentComponent(this._reactInternalFiber)
       this.props.setComponentLoaded(parentComponent, false)
     }
 
     componentDidMount() {
         const { menu } = this.refs
         
-        $(function () {
+        $(() => {
             $(menu).metisMenu({
                 toggle: true
             })
         })
 
-        let parentComponent = getParentComponent.call(this._reactInternalFiber)
+        let parentComponent = getParentComponent(this._reactInternalFiber)
         this.props.setComponentLoaded(parentComponent, true)
     }
 

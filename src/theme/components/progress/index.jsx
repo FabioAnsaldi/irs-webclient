@@ -11,7 +11,7 @@ class Progress extends Component {
 
     componentDidMount() {
         pace.start();
-        let parentComponent = getParentComponent.call(this._reactInternalFiber)
+        let parentComponent = getParentComponent(this._reactInternalFiber)
         this.props.setComponentLoaded(parentComponent, true)
     }
 

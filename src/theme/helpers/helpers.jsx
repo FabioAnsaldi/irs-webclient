@@ -1,4 +1,4 @@
-export function correctHeight() {
+export const correctHeight = () => {
     
     var pageWrapper = $('#page-wrapper');
     var navbarHeight = $('nav.navbar-default').height();
@@ -25,7 +25,7 @@ export function correctHeight() {
     }
 }
     
-export function detectBody() {
+export const detectBody = () => {
     if ($(document).width() < 769) {
         $('body').addClass('body-small')
     } else {
@@ -33,34 +33,32 @@ export function detectBody() {
     }
 }
 
-export function smoothlyMenu() {
+export const smoothlyMenu = () => {
     if (!$('body').hasClass('mini-navbar') || $('body').hasClass('body-small')) {
         // Hide menu in order to smoothly turn on when maximize menu
-        $('#side-menu').hide();
+        $('#side-menu').hide()
         // For smoothly turn on menu
-        setTimeout(
-            function () {
-                $('#side-menu').fadeIn(400);
-            }, 200);
+        setTimeout( () => {
+            $('#side-menu').fadeIn(400)
+        }, 200)
     } else if ($('body').hasClass('fixed-sidebar')) {
         $('#side-menu').hide();
-        setTimeout(
-            function () {
-                $('#side-menu').fadeIn(400);
-            }, 100);
+        setTimeout( () => {
+            $('#side-menu').fadeIn(400)
+        }, 100)
     } else {
         // Remove all inline style from jquery fadeIn function to reset menu state
-        $('#side-menu').removeAttr('style');
+        $('#side-menu').removeAttr('style')
     }
 }
 
-export function getParentComponent() {
+export const getParentComponent = (context) => {
 
-    let name = this.elementType.name && (this.elementType.name === this.type.name) ? this.type.name.toUpperCase() : ""
+    let name = context.elementType.name && (context.elementType.name === context.type.name) ? context.type.name.toUpperCase() : ""
     let parent = ""
 
-    if (this._debugOwner) {
-        parent = getParentComponent.call(this._debugOwner)
+    if (context._debugOwner) {
+        parent = getParentComponent(context._debugOwner)
     }
 
     if (name !== "" && parent !== "") {
@@ -72,7 +70,7 @@ export function getParentComponent() {
     return name
 }
 
-export function getStateFrom(globalState, componentName) {
+export const getStateFrom = (globalState, componentName) => {
 
     if (!componentName || typeof globalState !== 'object' || globalState === null) {
         return null
