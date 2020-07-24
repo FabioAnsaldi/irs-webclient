@@ -19,7 +19,7 @@ class Dashboard extends Component {
 
     componentDidMount() {
         // eslint-disable-next-line func-names
-        $(window).bind('load resize', function() {
+        $(window).bind('load resize', () => {
             correctHeight()
             detectBody()
         })

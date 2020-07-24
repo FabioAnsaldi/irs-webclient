@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import MenuItem from '../../menuItem'
-import MenuTree from '../../menuTree'
+import MenuItem from '../menuItem'
+import MenuTree from '../menuTree'
 
 import { getParentComponent, getStateFrom } from '../../helpers/helpers'
 
@@ -18,11 +18,13 @@ class Navigation extends Component {
     }
 
     componentDidMount() {
+
         const { menu } = this.refs
-        
+
         $(() => {
             $(menu).metisMenu({
-                toggle: true
+                toggle: true,
+                subMenu:'.nav-second-level'
             })
         })
 
@@ -55,12 +57,17 @@ class Navigation extends Component {
                                 <span>IRS</span>
                             </div>
                         </li>
-                        {/* menu */}
-                        <MenuItem path="/dashboard" icon="home" label="Dashboard" />
-                        <MenuTree icon="building-o" label="General">
-                            <MenuItem path="/page1" label="Page Example 1" tree={true} />
-                            <MenuItem path="/page2" label="Page Example 2" tree={true} />
-                        </MenuTree>
+                        <li>
+                            <MenuTree>
+                                <MenuItem path="/dashboard" icon="home" label="Dashboard" tree={true} />
+                            </MenuTree>
+                        </li>
+                        <li>
+                            <MenuTree className="nav-second-level" icon="building-o" label="General" collapse="true">
+                                <MenuItem path="/page1" label="Page Example 1" tree={true} />
+                                <MenuItem path="/page2" label="Page Example 2" tree={true} />
+                            </MenuTree>
+                        </li>
                     </ul>
                 </div>
             </nav>

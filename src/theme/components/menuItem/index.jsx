@@ -1,34 +1,40 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { Link } from 'react-router-dom'
 
-import pace from '../../assets/js/pace/pace'
 import { getParentComponent, getStateFrom } from '../../helpers/helpers'
 
 import { setComponentLoaded } from './actions'
 
-class Progress extends Component {
+class MenuItem extends Component {
 
     componentWillMount() {
         let parentComponent = getParentComponent(this._reactInternalFiber)
         this.props.setComponentLoaded(parentComponent, false)
     }
-    
+
     componentDidMount() {
-        pace.start();
         let parentComponent = getParentComponent(this._reactInternalFiber)
         this.props.setComponentLoaded(parentComponent, true)
     }
 
     render() {
         
-        const { state } = this.props
+        const { state, icon, label, tree, path, className } = this.props
 
-        return (null)
+        return (
+            <li>
+                <Link to={path} className={className}>
+                    { icon && <span><i className={`fa fa-${icon}`}></i>&nbsp;</span> }
+                    { tree ? label : <span className="nav-label">{label}</span> }
+                </Link>
+            </li>
+        )
     }
 }
 
-const mapStateToProps = state => ({ state: getStateFrom(state, 'progress') })
+const mapStateToProps = state => ({ state: getStateFrom(state, 'MenuItem') })
 const mapDispatchToProps = dispatch => bindActionCreators({ setComponentLoaded }, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(Progress)
+export default connect(mapStateToProps, mapDispatchToProps)(MenuItem)

@@ -17,3 +17,8 @@ h1, h2, h3, h4, h5, h6 {
 .ant-menu-dark, .ant-menu-dark .ant-menu-sub {
     background: #2f4050 !important;
 }
+
+.metismenu ul li {
+    display: block;
+    width: 100%;
+}

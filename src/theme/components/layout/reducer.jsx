@@ -1,9 +1,9 @@
-import progressReducer from "../progress/reducer";
-import navigationReducer from "../navigation/reducer";
-import topHeaderReducer from "../topHeader/reducer";
-import headerReducer from "../header/reducer";
-import footerReducer from "../footer/reducer";
-import dashboardReducer from "../../../pages/dashboard/reducer";
+import progressReducer from "../progress/reducer"
+import navigationReducer from "../navigation/reducer"
+import topHeaderReducer from "../topHeader/reducer"
+import headerReducer from "../header/reducer"
+import footerReducer from "../footer/reducer"
+import dashboardReducer from "../../../pages/dashboard/reducer"
 
 const INITIAL_STATE = {
     progress: null,
