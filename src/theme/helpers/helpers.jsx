@@ -1,3 +1,5 @@
+import { isNumber } from "lodash"
+
 export const correctHeight = () => {
     
     var pageWrapper = $('#page-wrapper');
@@ -26,6 +28,7 @@ export const correctHeight = () => {
 }
     
 export const detectBody = () => {
+
     if ($(document).width() < 769) {
         $('body').addClass('body-small')
     } else {
@@ -34,6 +37,7 @@ export const detectBody = () => {
 }
 
 export const smoothlyMenu = () => {
+
     if (!$('body').hasClass('mini-navbar') || $('body').hasClass('body-small')) {
         // Hide menu in order to smoothly turn on when maximize menu
         $('#side-menu').hide()
@@ -54,15 +58,20 @@ export const smoothlyMenu = () => {
 
 export const getParentComponent = (context) => {
 
-    let name = context.elementType.name && (context.elementType.name === context.type.name) ? context.type.name.toUpperCase() : ""
+    const elementType = context.elementType;
+    const pendingProps = context.pendingProps;
+
+    let name = elementType.name && (elementType.name === context.type.name) ? context.type.name.toUpperCase() : ""
     let parent = ""
 
     if (context._debugOwner) {
         parent = getParentComponent(context._debugOwner)
     }
 
+    let number = pendingProps && pendingProps.componentName ? `[${pendingProps.componentName}]` : ""
+
     if (name !== "" && parent !== "") {
-        name = `${parent}::${name}`
+        name = `${parent}::${number}${name}`
     } else {
         name += parent
     }
@@ -91,4 +100,16 @@ export const getStateFrom = (globalState, componentName) => {
     })
     
     return state
+}
+
+export const getStateObject = (action, state) => {
+    
+    if (/\[([^)]+)\]/.test(action.type)) {
+        if (state && isNumber(state.length)) {
+            return (state[/\[([^)]+)\]/.exec(action.type)[1]] = { isLoaded: action.payload }) && state
+        } else {
+            return (state = []) && (state[/\[([^)]+)\]/.exec(action.type)[1]] = { isLoaded: action.payload }) && state
+        }
+    }
+    return { ...state, isLoaded: action.payload }
 }

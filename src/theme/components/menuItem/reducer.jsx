@@ -1,3 +1,5 @@
+import { getStateObject } from '../../helpers/helpers'
+
 const INITIAL_STATE = {
     isLoaded: false
 }
@@ -5,7 +7,7 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
     switch (true) {
         case /MENUITEM::SET_COMPONENT_LOADED/.test(action.type):
-            return { ...state, isLoaded: action.payload }
+            return getStateObject(action, state)
         default:
             return state
     }
