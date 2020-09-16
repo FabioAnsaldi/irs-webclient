@@ -10,6 +10,18 @@ const theme = lessToJs(
   fs.readFileSync(path.join(__dirname, "./src/design/ant-default-vars.less"), "utf8")
 );
 
+const isDirectory = pathFolder => fs.statSync(pathFolder).isDirectory();
+const getDirectories = pathFolder => fs.readdirSync(pathFolder).map(name => path.join(pathFolder, name)).filter(isDirectory);
+const getDirectoriesRecursively = (pathFolder) => {
+    let dirs = getDirectories(pathFolder);
+    return dirs;
+};
+
+let dirs = getDirectoriesRecursively(__dirname + '/src/theme/components')
+  .map( pathFolder => pathFolder.replace(__dirname + '/src/theme/components/', ''))
+  .concat(getDirectoriesRecursively(__dirname + '/src/pages'))
+  .map( pathFolder => pathFolder.replace(__dirname + '/src/pages/', ''))
+
 require("babel-polyfill");
 
 module.exports = {
@@ -30,6 +42,11 @@ module.exports = {
     }
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env':{
+        'COMPONENTS': JSON.stringify(dirs)
+      }
+    }),
     new SourceMapDevToolPlugin({
       filename: "[file].map"
     }),

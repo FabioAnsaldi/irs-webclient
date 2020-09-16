@@ -1,11 +1,11 @@
 const INITIAL_STATE = {
-    isModalOpen: false,
-    isLoaded: false
+    isLoaded: false,
+    isModalOpen: false
 }
 
 export default (state = INITIAL_STATE, action) => {
     switch (true) {
-        case /DASHBOARD::SET_COMPONENT_LOADED/.test(action.type):
+        case /DASHBOARD::SET_COMPONENT_LOADED/.test(action.type.replace(/\[.*?\]/g, '')):
             return { ...state, isLoaded: action.payload }
         case /DASHBOARD::SET_MODAL_STATUS/.test(action.type):
             return { ...state, isModalOpen: action.payload }

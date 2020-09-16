@@ -1,13 +1,13 @@
 import copyrightReducer from "../../theme/components/copyright/reducer";
 
 const INITIAL_STATE = {
-    copyright: null,
-    isLoaded: false
+    isLoaded: false,
+    copyright: null
 }
 
 export default (state = INITIAL_STATE, action) => {
     switch (true) {
-        case /LOGIN::SET_COMPONENT_LOADED/.test(action.type):
+        case /LOGIN::SET_COMPONENT_LOADED/.test(action.type.replace(/\[.*?\]/g, '')):
             return { ...state, isLoaded: action.payload }
         case /COPYRIGHT::/.test(action.type):
             return { ...state, copyright: copyrightReducer(state && state.copyright, action) }

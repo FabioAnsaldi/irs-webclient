@@ -6,7 +6,7 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
     switch (true) {
-        case /MENUITEM::SET_COMPONENT_LOADED/.test(action.type):
+        case /MENUITEM::SET_COMPONENT_LOADED/.test(action.type.replace(/\[.*?\]/g, '')):
             return getStateObject(action, state)
         default:
             return state

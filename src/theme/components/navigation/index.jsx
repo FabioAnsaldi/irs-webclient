@@ -60,7 +60,7 @@ class Navigation extends Component {
                         <li>
                             <MenuTree
                                 componentName="dashoboard">
-                                {/**<MenuItem path="/dashboard" icon="home" label="Dashboard" tree={true} /> */}
+                                <MenuItem path="/dashboard" icon="home" label="Dashboard" tree={true} />
                             </MenuTree>
                         </li>
                         <li>

@@ -4,7 +4,7 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
     switch (true) {
-        case /TOPHEADER::SET_COMPONENT_LOADED/.test(action.type):
+        case /TOPHEADER::SET_COMPONENT_LOADED/.test(action.type.replace(/\[.*?\]/g, '')):
             return { ...state, isLoaded: action.payload }
         default:
             return state

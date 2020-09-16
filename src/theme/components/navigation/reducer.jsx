@@ -7,9 +7,9 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
     switch (true) {
-        case /NAVIGATION::SET_COMPONENT_LOADED/.test(action.type):
+        case /NAVIGATION::SET_COMPONENT_LOADED/.test(action.type.replace(/\[.*?\]/g, '')):
             return { ...state, isLoaded: action.payload }
-        case /MENUTREE::/.test(action.type):
+        case /MENUTREE(\[.*?\])?::/.test(action.type):
             return { ...state, menuTree: menuTreeReducer(state && state.menuTree, action) }
         default:
             return state

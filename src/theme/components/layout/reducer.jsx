@@ -6,18 +6,18 @@ import footerReducer from "../footer/reducer"
 import dashboardReducer from "../../../pages/dashboard/reducer"
 
 const INITIAL_STATE = {
+    isLoaded: false,
     progress: null,
     navigation: null,
     topHeader: null,
     header: null,
     footer: null,
-    dashboard: null,
-    isLoaded: false
+    dashboard: null
 }
 
 export default (state = INITIAL_STATE, action) => {
     switch (true) {
-        case /LAYOUT::SET_COMPONENT_LOADED/.test(action.type):
+        case /LAYOUT::SET_COMPONENT_LOADED/.test(action.type.replace(/\[.*?\]/g, '')):
             return { ...state, isLoaded: action.payload }
         case /PROGRESS::/.test(action.type):
             return { ...state, progress: progressReducer(state && state.progress, action) }

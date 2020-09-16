@@ -58,20 +58,29 @@ export const smoothlyMenu = () => {
 
 export const getParentComponent = (context) => {
 
-    const elementType = context.elementType;
-    const pendingProps = context.pendingProps;
+    const elementType = context.elementType
+    const pendingProps = context.pendingProps
+    const components = process.env.COMPONENTS.map(name => name.toLowerCase())
 
-    let name = elementType.name && (elementType.name === context.type.name) ? context.type.name.toUpperCase() : ""
+    if (!elementType) {
+        return ""
+    }
+
+    let name = elementType.name && context.type && (elementType.name === context.type.name) ? context.type.name.toUpperCase() : ""
     let parent = ""
 
-    if (context._debugOwner) {
-        parent = getParentComponent(context._debugOwner)
+    if (elementType.name && !components.includes(elementType.name.toLowerCase())) {
+        name = ""
+    }
+
+    if (context.return) {
+        parent = getParentComponent(context.return)
     }
 
     let number = pendingProps && pendingProps.componentName ? `[${pendingProps.componentName}]` : ""
 
     if (name !== "" && parent !== "") {
-        name = `${parent}::${number}${name}`
+        name = `${parent}::${name}${number}`
     } else {
         name += parent
     }
@@ -103,13 +112,21 @@ export const getStateFrom = (globalState, componentName) => {
 }
 
 export const getStateObject = (action, state) => {
+
+    const arrayOfComponents = /.*(?=((?<=\S)\[([^)]+)\]+)).*/
     
-    if (/\[([^)]+)\]/.test(action.type)) {
+    if (arrayOfComponents.test(action.type)) {
+        let componentName = arrayOfComponents.exec(action.type)[2]
+
         if (state && isNumber(state.length)) {
-            return (state[/\[([^)]+)\]/.exec(action.type)[1]] = { isLoaded: action.payload }) && state
+            state[componentName] = { isLoaded: action.payload }
         } else {
-            return (state = []) && (state[/\[([^)]+)\]/.exec(action.type)[1]] = { isLoaded: action.payload }) && state
+            state = []
+            state[componentName] = { isLoaded: action.payload }
         }
+        
+        return state
     }
+
     return { ...state, isLoaded: action.payload }
 }
