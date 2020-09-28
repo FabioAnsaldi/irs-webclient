@@ -58,8 +58,7 @@ class Navigation extends Component {
                             </div>
                         </li>
                         <li>
-                            <MenuTree
-                                componentName="dashoboard">
+                            <MenuTree componentName="dashboard">
                                 <MenuItem path="/dashboard" icon="home" label="Dashboard" tree={true} />
                             </MenuTree>
                         </li>
@@ -70,8 +69,8 @@ class Navigation extends Component {
                                 icon="building-o"
                                 label="General"
                                 collapse="true">
-                                {/**<MenuItem path="/page1" label="Page Example 1" tree={true} />
-                                <MenuItem path="/page2" label="Page Example 2" tree={true} /> */}
+                                <MenuItem path="/page1" label="Page Example 1" tree={true} />
+                                {/**<MenuItem path="/page2" label="Page Example 2" tree={true} /> */}
                             </MenuTree>
                         </li>
                     </ul>

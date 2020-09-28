@@ -1,17 +1,20 @@
-import copyrightReducer from "../copyright/reducer";  
+import copyrightReducer from "../copyright/reducer";
+import { getStateObject } from '../../helpers/helpers'
 
 const INITIAL_STATE = {
     isLoaded: false,
     copyright: null
 }
 
-export default (state = INITIAL_STATE, action) => {
+const footer = (state = INITIAL_STATE, action) => {
     switch (true) {
         case /FOOTER::SET_COMPONENT_LOADED/.test(action.type.replace(/\[.*?\]/g, '')):
-            return { ...state, isLoaded: action.payload }
-        case /COPYRIGHT::/.test(action.type):
-            return { ...state, copyright: copyrightReducer(state && state.copyright, action) }
+            return getStateObject(action, state)
+        case /COPYRIGHT(\[.*?\])?::/.test(action.type):
+            return getStateObject(action, state, copyrightReducer)
         default:
             return state
     }
 }
+
+export default footer

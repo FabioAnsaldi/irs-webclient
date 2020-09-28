@@ -1,12 +1,16 @@
+import { getStateObject } from '../../helpers/helpers'
+
 const INITIAL_STATE = {
     isLoaded: false
 }
 
-export default (state = INITIAL_STATE, action) => {
+const topHeader = (state = INITIAL_STATE, action) => {
     switch (true) {
         case /TOPHEADER::SET_COMPONENT_LOADED/.test(action.type.replace(/\[.*?\]/g, '')):
-            return { ...state, isLoaded: action.payload }
+            return getStateObject(action, state)
         default:
             return state
     }
 }
+
+export default topHeader

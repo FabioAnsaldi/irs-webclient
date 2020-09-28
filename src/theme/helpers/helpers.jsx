@@ -111,17 +111,42 @@ export const getStateFrom = (globalState, componentName) => {
     return state
 }
 
-export const getStateObject = (action, state) => {
+export const getStateObject = (action, state, reducer) => {
 
-    const arrayOfComponents = /.*(?=((?<=\S)\[([^)]+)\]+)).*/
+    const settingComponent = /.*(?=((?<=\S)\[([^)]+)\]::SET)).*/
+    const childComponent = /.*(?=((?<=\S)\[([^)]+)\])).*/
     
-    if (arrayOfComponents.test(action.type)) {
-        let componentName = arrayOfComponents.exec(action.type)[2]
+    let childComponentNameArray = childComponent.exec(action.type)
 
-        if (state && isNumber(state.length)) {
-            state[componentName] = { isLoaded: action.payload }
+    if (reducer) {
+        if (!Array.isArray(state)) {
+            let newState = {}
+    
+            newState[reducer.name] = reducer(state && state[reducer.name], action)
+    
+            return {...state, ...newState}
+        }
+        if (Array.isArray(childComponentNameArray)) {
+            let newState = {}
+            let childComponentName = childComponentNameArray && childComponentNameArray[2]
+    
+            if (state[childComponentName]) {
+                newState[reducer.name] = reducer(state[childComponentName] && state[childComponentName][reducer.name], action)
+                state[childComponentName] = {...state[childComponentName], ...newState}
+                
+                return state
+            }
+        }
+    }
+    if (settingComponent.test(action.type)) {
+        let componentName = settingComponent.exec(action.type)[2]
+
+        if (Array.isArray(state)) {
+            state[componentName] = { ...state[componentName], ...{ isLoaded: action.payload }}
         } else {
-            state = []
+            if (!Array.isArray(state)) {
+                state = []
+            }
             state[componentName] = { isLoaded: action.payload }
         }
         

@@ -4,6 +4,7 @@ import topHeaderReducer from "../topHeader/reducer"
 import headerReducer from "../header/reducer"
 import footerReducer from "../footer/reducer"
 import dashboardReducer from "../../../pages/dashboard/reducer"
+import { getStateObject } from '../../helpers/helpers'
 
 const INITIAL_STATE = {
     isLoaded: false,
@@ -15,23 +16,25 @@ const INITIAL_STATE = {
     dashboard: null
 }
 
-export default (state = INITIAL_STATE, action) => {
+const layout = (state = INITIAL_STATE, action) => {
     switch (true) {
         case /LAYOUT::SET_COMPONENT_LOADED/.test(action.type.replace(/\[.*?\]/g, '')):
-            return { ...state, isLoaded: action.payload }
-        case /PROGRESS::/.test(action.type):
-            return { ...state, progress: progressReducer(state && state.progress, action) }
-        case /NAVIGATION::/.test(action.type):
-            return { ...state, navigation: navigationReducer(state && state.navigation, action) }
-        case /TOPHEADER::/.test(action.type):
-            return { ...state, topHeader: topHeaderReducer(state && state.topHeader, action) }
-        case /HEADER::/.test(action.type):
-            return { ...state, header: headerReducer(state && state.header, action) }
-        case /FOOTER::/.test(action.type):
-            return { ...state, footer: footerReducer(state && state.footer, action) }
-        case /DASHBOARD::/.test(action.type):
-            return { ...state, dashboard: dashboardReducer(state && state.dashboard, action) }
+            return getStateObject(action, state)
+        case /PROGRESS(\[.*?\])?::/.test(action.type):
+            return getStateObject(action, state, progressReducer)
+        case /NAVIGATION(\[.*?\])?::/.test(action.type):
+            return getStateObject(action, state, navigationReducer)
+        case /TOPHEADER(\[.*?\])?::/.test(action.type):
+            return getStateObject(action, state, topHeaderReducer)
+        case /HEADER(\[.*?\])?::/.test(action.type):
+            return getStateObject(action, state, headerReducer)
+        case /FOOTER(\[.*?\])?::/.test(action.type):
+            return getStateObject(action, state, footerReducer)
+        case /DASHBOARD(\[.*?\])?::/.test(action.type):
+            return getStateObject(action, state, dashboardReducer)
         default:
             return state
     }
 }
+
+export default layout
