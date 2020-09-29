@@ -2,7 +2,6 @@ import { getStateObject } from '../../helpers/helpers'
 import menuItemReducer from "../../../theme/components/menuItem/reducer"
 
 const INITIAL_STATE = {
-    isLoaded: false,
     menuItem: null
 }
 

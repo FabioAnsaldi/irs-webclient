@@ -1,7 +1,6 @@
 import { getStateObject } from '../../theme/helpers/helpers'
 
 const INITIAL_STATE = {
-    isLoaded: false,
     isModalOpen: false
 }
 

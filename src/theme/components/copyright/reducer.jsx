@@ -1,8 +1,6 @@
 import { getStateObject } from '../../helpers/helpers'
 
-const INITIAL_STATE = {
-    isLoaded: false
-}
+const INITIAL_STATE = {}
 
 const copyright = (state = INITIAL_STATE, action) => {
     switch (true) {

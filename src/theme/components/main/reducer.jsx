@@ -2,7 +2,6 @@ import routesReducer from "../routes/reducer";
 import { getStateObject } from '../../helpers/helpers'
 
 const INITIAL_STATE = {
-    isLoaded: false,
     routes: null,
     user: {
         isLogged: true

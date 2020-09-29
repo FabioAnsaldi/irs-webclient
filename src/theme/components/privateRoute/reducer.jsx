@@ -2,7 +2,6 @@ import layoutReducer from "../layout/reducer";
 import { getStateObject } from '../../helpers/helpers'
 
 const INITIAL_STATE = {
-    isLoaded: false,
     layout: null
 }
 

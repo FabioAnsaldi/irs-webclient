@@ -2,7 +2,6 @@ import loginReducer from "../../../pages/login/reducer";
 import { getStateObject } from '../../helpers/helpers'
 
 const INITIAL_STATE = {
-    isLoaded: false,
     login: null
 }
 

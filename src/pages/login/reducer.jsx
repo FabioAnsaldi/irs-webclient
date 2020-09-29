@@ -2,7 +2,6 @@ import copyrightReducer from "../../theme/components/copyright/reducer";
 import { getStateObject } from '../../theme/helpers/helpers'
 
 const INITIAL_STATE = {
-    isLoaded: false,
     copyright: null
 }
 

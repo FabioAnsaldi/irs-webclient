@@ -47,11 +47,11 @@ class Navigation extends Component {
                                     <span className="block m-t-xs font-bold">Fabio Ansaldi</span>
                                     <span className="text-muted text-xs block">Administrator <b className="caret"></b></span>
                                 </a>
-                                {/**<ul className="dropdown-menu animated fadeInRight m-t-xs">
-                                    <MenuItem className="dropdown-item" path="/settings/user" icon="gear" label="Preferences" />
+                                <ul className="dropdown-menu animated fadeInRight m-t-xs">
+                                    <MenuItem componentName="user" className="dropdown-item" path="/settings/user" icon="gear" label="Preferences" />
                                     <li className="dropdown-divider"></li>
-                                    <MenuItem path="/logout" icon="sign-out" label="Exit" />
-                                </ul> */}
+                                    <MenuItem componentName="logout" path="/logout" icon="sign-out" label="Exit" />
+                                </ul>
                             </div>
                             <div className="logo-element">
                                 <span>IRS</span>
@@ -69,8 +69,8 @@ class Navigation extends Component {
                                 icon="building-o"
                                 label="General"
                                 collapse="true">
-                                <MenuItem path="/page1" label="Page Example 1" tree={true} />
-                                {/**<MenuItem path="/page2" label="Page Example 2" tree={true} /> */}
+                                <MenuItem componentName="page1" path="/page1" label="Page Example 1" tree={true} />
+                                <MenuItem componentName="page2" path="/page2" label="Page Example 2" tree={true} />
                             </MenuTree>
                         </li>
                     </ul>

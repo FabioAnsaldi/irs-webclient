@@ -3,7 +3,6 @@ import publicRouteReducer from "../publicRoute/reducer";
 import { getStateObject } from '../../helpers/helpers'
 
 const INITIAL_STATE = {
-    isLoaded: false,
     privateRoute: null,
     publicRoute: null
 }

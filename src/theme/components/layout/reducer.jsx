@@ -7,7 +7,6 @@ import dashboardReducer from "../../../pages/dashboard/reducer"
 import { getStateObject } from '../../helpers/helpers'
 
 const INITIAL_STATE = {
-    isLoaded: false,
     progress: null,
     navigation: null,
     topHeader: null,

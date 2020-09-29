@@ -136,6 +136,15 @@ export const getStateObject = (action, state, reducer) => {
                 
                 return state
             }
+            let parentComponentNameArray = childComponentNameArray && childComponent.exec(action.type.replace(childComponentNameArray[1], ''))
+            let parentComponentName = parentComponentNameArray && parentComponentNameArray[2]
+
+            if (state[parentComponentName]) {
+                newState[reducer.name] = reducer(state[parentComponentName] && state[parentComponentName][reducer.name], action)
+                state[parentComponentName] = {...state[parentComponentName], ...newState}
+                
+                return state
+            }
         }
     }
     if (settingComponent.test(action.type)) {
